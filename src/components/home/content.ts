@@ -42,7 +42,7 @@ export const RISK_BANNER = {
 export const FILE_CHECK = {
   title: "보조 기능: 기존 파일 기본 점검",
   subcopy: "이미 확보한 샘플 파일이 있다면 업로드 전에 확장자, 용량, 기본 시그니처를 빠르게 확인할 수 있습니다.",
-  microcopy: "메인 생성기 테스트 뒤에 실제 반입 예정 파일을 한 번 더 검수하는 보조 흐름입니다.",
+  microcopy: "메인 생성기 테스트 뒤에 실제 반입 예정 파일을 한 번 더 검수하는 보조 흐름입니다. 기본은 접힌 상태로 유지합니다.",
   pickerLabel: "점검할 파일 선택",
   emptyState: "아직 선택된 파일이 없습니다. 기본 점검이 필요한 파일을 올려주세요.",
   cta: "파일 기본 점검 실행",
@@ -99,6 +99,6 @@ export const FAQ_ITEMS = [
   },
   {
     question: "왜 확장자를 자유 입력이 아니라 선택식으로 제한하나요?",
-    answer: "테스트 범위를 관리하고 오용 가능성을 줄이기 위해 .bin, .dat, .zero, .txt, .json만 안전 목록으로 제공합니다.",
+    answer: "테스트 범위를 관리하고 오용 가능성을 줄이기 위해 실행형/문서 사칭 소지가 큰 확장자는 제외하고 .bin, .dat, .zero, .txt, .json, .csv, .tsv, .log, .md, .xml, .yaml, .yml, .ini, .cfg만 안전 목록으로 제공합니다.",
   },
 ] as const;

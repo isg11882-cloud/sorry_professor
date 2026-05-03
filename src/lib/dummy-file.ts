@@ -1,5 +1,20 @@
 export const FILE_NAME_PREFIX = "[TEST]";
-export const SAFE_EXTENSIONS = ["bin", "dat", "zero", "txt", "json"] as const;
+export const SAFE_EXTENSIONS = [
+  "bin",
+  "dat",
+  "zero",
+  "txt",
+  "json",
+  "csv",
+  "tsv",
+  "log",
+  "md",
+  "xml",
+  "yaml",
+  "yml",
+  "ini",
+  "cfg",
+] as const;
 export const GENERATOR_MODES = ["zero", "random"] as const;
 
 export type SafeExtension = (typeof SAFE_EXTENSIONS)[number];
