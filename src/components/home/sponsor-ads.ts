@@ -1,3 +1,7 @@
+import type { StaticImageData } from "next/image";
+
+import giftodayCampusCard from "../../../public/giftoday-campus-card.png";
+
 export type SponsorAd = {
   id: string;
   label: string;
@@ -8,7 +12,7 @@ export type SponsorAd = {
   emphasis: string;
   cta: string;
   accent: string;
-  imageSrc: string;
+  imageSrc: string | StaticImageData;
   imageAlt: string;
 };
 
@@ -23,7 +27,7 @@ export const SPONSOR_ADS: SponsorAd[] = [
     emphasis: "선배님들이 입 모아 추천하는 대학굿즈의 성지",
     cta: "굿즈 둘러보기",
     accent: "캠퍼스 굿즈 · 단체티 · 행사 기념품",
-    imageSrc: "/giftoday-campus-card.png",
+    imageSrc: giftodayCampusCard,
     imageAlt: "Giftoday 대학 굿즈 추천 카드 이미지",
   },
 ];
