@@ -162,30 +162,56 @@ button {
 
 .sponsor-wordmark {
   display: inline-flex;
-  min-width: 188px;
+  min-width: 168px;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 4px;
   border: 2px solid #000;
   background: linear-gradient(180deg, #ffffff 0%, #dbeafe 100%);
-  padding: 10px 14px;
-  text-align: center;
-  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
+  padding: 8px 10px;
+  box-shadow: inset -2px -2px 0 #94a3b8, inset 2px 2px 0 white;
 }
 
 .sponsor-wordmark-title {
-  font-size: 1.05rem;
+  font-size: 18px;
   font-weight: 900;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.08em;
   color: #0f172a;
+  line-height: 1;
 }
 
 .sponsor-wordmark-subtitle {
-  font-size: 0.72rem;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #334155;
+  color: #475569;
+}
+
+.sponsor-emphasis {
+  width: fit-content;
+  max-width: 100%;
+  border: 2px dashed #000;
+  background: #fef3c7;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.5;
+  color: #7c2d12;
+}
+
+.sponsor-image-frame {
+  overflow: hidden;
+  border: 2px solid #000;
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  padding: 6px;
+  box-shadow: inset -2px -2px 0 #94a3b8, inset 2px 2px 0 white;
+}
+
+.sponsor-image {
+  display: block;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+  border: 2px solid #000;
+  background: #fff;
 }
 
 .sponsor-card-cta {
@@ -195,6 +221,10 @@ button {
 
 @media (max-width: 640px) {
   .sponsor-wordmark {
+    width: 100%;
+  }
+
+  .sponsor-emphasis {
     width: 100%;
   }
 }
