@@ -18,8 +18,17 @@ export function SponsorRecommendationSection() {
               </div>
 
               <div className="sponsor-wordmark" aria-label={`${ad.advertiser} 워드마크`}>
-                <span className="sponsor-wordmark-title">{ad.advertiser.toUpperCase()}</span>
-                <span className="sponsor-wordmark-subtitle">{ad.accent}</span>
+                <span className="sponsor-wordmark-badge">SPONSORED</span>
+                <div className="sponsor-wordmark-lockup">
+                  <span className="sponsor-wordmark-logo" aria-hidden="true">
+                    <span className="sponsor-wordmark-logo-core" />
+                    <span className="sponsor-wordmark-logo-dot sponsor-wordmark-logo-dot-top" />
+                    <span className="sponsor-wordmark-logo-dot sponsor-wordmark-logo-dot-right" />
+                    <span className="sponsor-wordmark-logo-dot sponsor-wordmark-logo-dot-bottom" />
+                  </span>
+                  <span className="sponsor-wordmark-title">{ad.advertiser.toUpperCase()}</span>
+                </div>
+                <span className="sponsor-wordmark-subtitle">{ad.brandHint}</span>
               </div>
             </div>
 

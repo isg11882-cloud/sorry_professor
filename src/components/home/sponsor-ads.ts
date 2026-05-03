@@ -11,7 +11,7 @@ export type SponsorAd = {
   body: string;
   emphasis: string;
   cta: string;
-  accent: string;
+  brandHint: string;
   imageSrc: string | StaticImageData;
   imageAlt: string;
 };
@@ -26,7 +26,7 @@ export const SPONSOR_ADS: SponsorAd[] = [
     body: "동아리 굿즈, 학생회 단체티, 행사 기념품 고민은 이제 그만.",
     emphasis: "선배님들이 입 모아 추천하는 대학굿즈의 성지",
     cta: "굿즈 둘러보기",
-    accent: "캠퍼스 굿즈 · 단체티 · 행사 기념품",
+    brandHint: "giftoday.co.kr · B2B 굿즈/판촉물",
     imageSrc: giftodayCampusCard,
     imageAlt: "Giftoday 대학 굿즈 추천 카드 이미지",
   },

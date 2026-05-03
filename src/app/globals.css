@@ -162,13 +162,71 @@ button {
 
 .sponsor-wordmark {
   display: inline-flex;
-  min-width: 168px;
+  min-width: 220px;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   border: 2px solid #000;
   background: linear-gradient(180deg, #ffffff 0%, #dbeafe 100%);
-  padding: 8px 10px;
+  padding: 10px 12px;
   box-shadow: inset -2px -2px 0 #94a3b8, inset 2px 2px 0 white;
+}
+
+.sponsor-wordmark-badge {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: #0369a1;
+}
+
+.sponsor-wordmark-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sponsor-wordmark-logo {
+  position: relative;
+  display: inline-flex;
+  height: 28px;
+  width: 28px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #0f172a;
+  background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+  box-shadow: inset -2px -2px 0 rgba(15, 23, 42, 0.2), inset 2px 2px 0 rgba(255, 255, 255, 0.9);
+}
+
+.sponsor-wordmark-logo-core {
+  height: 10px;
+  width: 10px;
+  border-radius: 999px;
+  background: #0f172a;
+}
+
+.sponsor-wordmark-logo-dot {
+  position: absolute;
+  height: 6px;
+  width: 6px;
+  border-radius: 999px;
+  border: 1px solid #0f172a;
+}
+
+.sponsor-wordmark-logo-dot-top {
+  top: 3px;
+  left: 10px;
+  background: #fb7185;
+}
+
+.sponsor-wordmark-logo-dot-right {
+  top: 10px;
+  right: 3px;
+  background: #38bdf8;
+}
+
+.sponsor-wordmark-logo-dot-bottom {
+  bottom: 3px;
+  left: 10px;
+  background: #34d399;
 }
 
 .sponsor-wordmark-title {
