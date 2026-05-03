@@ -19,6 +19,7 @@ import {
   checkFileIntegrity,
   type IntegrityResult,
 } from "@/lib/file-integrity";
+import { normalizeSizeKb } from "@/lib/file-size";
 
 type HomeState = {
   selectedFile: File | null;
@@ -42,9 +43,6 @@ const INITIAL_STATE: HomeState = {
   lastDownload: "",
 };
 
-const MIN_SIZE_KB = 10;
-const MAX_SIZE_KB = 51200;
-
 export function HomeClient() {
   const [state, setState] = useState<HomeState>(INITIAL_STATE);
 
@@ -67,7 +65,7 @@ export function HomeClient() {
   };
 
   const onGenerate = () => {
-    const normalizedSizeKb = Math.max(MIN_SIZE_KB, Math.min(state.sizeKb || MIN_SIZE_KB, MAX_SIZE_KB));
+    const normalizedSizeKb = normalizeSizeKb(state.sizeKb);
     const sizeBytes = normalizedSizeKb * 1024;
     const blob = createTestFileBlob(sizeBytes, state.mode);
     const filename = buildTestFilename(state.baseName, state.extension);
@@ -88,7 +86,7 @@ export function HomeClient() {
           onBaseNameChange={(baseName) => setState((current) => ({ ...current, baseName }))}
           onExtensionChange={(extension) => setState((current) => ({ ...current, extension }))}
           onModeChange={(mode) => setState((current) => ({ ...current, mode }))}
-          onSizeKbChange={(sizeKb) => setState((current) => ({ ...current, sizeKb }))}
+          onSizeKbChange={(sizeKb) => setState((current) => ({ ...current, sizeKb: normalizeSizeKb(sizeKb) }))}
           onGenerate={onGenerate}
         />
         <HeroSection />

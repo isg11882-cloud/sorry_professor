@@ -66,7 +66,7 @@ export const GENERATOR = {
   formatLabel: "확장자",
   dataModeLabel: "데이터 생성 방식",
   sizeLabel: "용량(KB)",
-  sizeHint: "최소 10KB / 최대 50MB(51,200KB) / 입력값은 1024 기준 바이트 크기에 그대로 반영됩니다.",
+  sizeHint: "최소 10KB / 최대 50MB(51,200KB) / 숫자 입력과 슬라이더는 동일한 KB 값을 유지하며 1024 기준 바이트 크기에 그대로 반영됩니다.",
   cta: "파일 생성 후 바로 다운로드",
   filenameLabel: "생성 파일명",
   labelGuide: "안전 표기",

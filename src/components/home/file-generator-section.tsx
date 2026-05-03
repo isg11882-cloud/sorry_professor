@@ -5,6 +5,7 @@ import {
   type GeneratorMode,
   type SafeExtension,
 } from "@/lib/dummy-file";
+import { MAX_SIZE_KB, MIN_SIZE_KB, normalizeSizeKb } from "@/lib/file-size";
 
 import { GENERATOR } from "./content";
 
@@ -21,9 +22,6 @@ type FileGeneratorSectionProps = {
   onGenerate: () => void;
 };
 
-const MIN_SIZE_KB = 10;
-const MAX_SIZE_KB = 51200;
-
 export function FileGeneratorSection({
   baseName,
   extension,
@@ -36,7 +34,7 @@ export function FileGeneratorSection({
   onSizeKbChange,
   onGenerate,
 }: FileGeneratorSectionProps) {
-  const normalizedSizeKb = Math.max(MIN_SIZE_KB, Math.min(sizeKb || MIN_SIZE_KB, MAX_SIZE_KB));
+  const normalizedSizeKb = normalizeSizeKb(sizeKb);
   const sizeBytes = normalizedSizeKb * 1024;
 
   return (
@@ -89,9 +87,9 @@ export function FileGeneratorSection({
             type="number"
             min={MIN_SIZE_KB}
             max={MAX_SIZE_KB}
-            step={10}
+            step={1}
             value={normalizedSizeKb}
-            onChange={(event) => onSizeKbChange(Number(event.target.value) || MIN_SIZE_KB)}
+            onChange={(event) => onSizeKbChange(normalizeSizeKb(event.target.valueAsNumber))}
             className="mt-2 w-full border-2 border-black bg-white px-3 py-2"
           />
           <span className="mt-2 block text-xs font-normal text-slate-600">{GENERATOR.sizeHint}</span>
@@ -104,9 +102,9 @@ export function FileGeneratorSection({
           type="range"
           min={MIN_SIZE_KB}
           max={MAX_SIZE_KB}
-          step={10}
+          step={1}
           value={normalizedSizeKb}
-          onChange={(event) => onSizeKbChange(Number(event.target.value))}
+          onChange={(event) => onSizeKbChange(normalizeSizeKb(event.target.valueAsNumber))}
           className="w-full"
         />
       </div>

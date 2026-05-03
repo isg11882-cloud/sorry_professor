@@ -5,6 +5,7 @@ import {
   type GeneratorMode,
   type SafeExtension,
 } from "@/lib/dummy-file";
+import { MAX_SIZE_KB, MIN_SIZE_KB, normalizeSizeKb } from "@/lib/file-size";
 
 import { GENERATOR } from "./content";
 
@@ -33,6 +34,8 @@ export function SampleDownloadSection({
   onSizeKbChange,
   onGenerate,
 }: SampleDownloadSectionProps) {
+  const normalizedSizeKb = normalizeSizeKb(sizeKb);
+
   return (
     <article className="retro-window p-5 lg:p-6">
       <h2 className="mb-2 text-3xl font-black">{GENERATOR.title}</h2>
@@ -81,11 +84,11 @@ export function SampleDownloadSection({
           {GENERATOR.sizeLabel}
           <input
             type="number"
-            min={10}
-            max={51200}
-            step={10}
-            value={sizeKb}
-            onChange={(event) => onSizeKbChange(Number(event.target.value) || 10)}
+            min={MIN_SIZE_KB}
+            max={MAX_SIZE_KB}
+            step={1}
+            value={normalizedSizeKb}
+            onChange={(event) => onSizeKbChange(normalizeSizeKb(event.target.valueAsNumber))}
             className="mt-2 w-full border-2 border-black bg-white px-3 py-2"
           />
           <span className="mt-2 block text-xs font-normal text-slate-600">{GENERATOR.sizeHint}</span>
@@ -96,11 +99,11 @@ export function SampleDownloadSection({
         <div className="mb-1 text-xs font-bold text-slate-700">{GENERATOR.sliderLabel}</div>
         <input
           type="range"
-          min={10}
-          max={51200}
-          step={10}
-          value={sizeKb}
-          onChange={(event) => onSizeKbChange(Number(event.target.value))}
+          min={MIN_SIZE_KB}
+          max={MAX_SIZE_KB}
+          step={1}
+          value={normalizedSizeKb}
+          onChange={(event) => onSizeKbChange(normalizeSizeKb(event.target.valueAsNumber))}
           className="w-full"
         />
       </div>
@@ -113,7 +116,8 @@ export function SampleDownloadSection({
         <div><strong>{GENERATOR.filenameLabel}:</strong> {buildTestFilename(baseName, extension)}</div>
         <div><strong>{GENERATOR.labelGuide}:</strong> {GENERATOR.labelValue}</div>
         <div><strong>파일명 접두사:</strong> {FILE_NAME_PREFIX}</div>
-        <div><strong>{GENERATOR.byteSizeLabel}:</strong> {(sizeKb * 1024).toLocaleString()} bytes</div>
+        <div><strong>설정 용량:</strong> {normalizedSizeKb.toLocaleString()} KB</div>
+        <div><strong>{GENERATOR.byteSizeLabel}:</strong> {(normalizedSizeKb * 1024).toLocaleString()} bytes</div>
         <div><strong>데이터 패턴:</strong> {mode === "zero" ? GENERATOR.modeZero : GENERATOR.modeRandom}</div>
         {lastDownload ? <div><strong>{GENERATOR.lastDownloadLabel}:</strong> {lastDownload}</div> : null}
       </div>
