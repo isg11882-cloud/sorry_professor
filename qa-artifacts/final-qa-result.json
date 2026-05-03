@@ -1,0 +1,191 @@
+{
+  "buildVerified": true,
+  "layout": {
+    "scrollWidth": 1440,
+    "viewportWidth": 1440,
+    "generatorTop": 154,
+    "riskBannerTop": 24,
+    "heroTop": 944,
+    "generatorBeforeHero": true,
+    "initialNumberValue": "1024",
+    "initialSliderValue": "1020"
+  },
+  "syncAfterSlider": {
+    "numberValue": "10",
+    "sliderValue": "20480"
+  },
+  "downloads": [
+    {
+      "mode": "zero",
+      "sizeKb": 10,
+      "filename": "[TEST]-zero-10kb.bin",
+      "expectedBytes": 10240,
+      "actualBytes": 10240,
+      "matchesSize": true,
+      "prefixOk": true,
+      "exactNameOk": true,
+      "zeroAllZero": true,
+      "randomAllZero": null,
+      "sha256Head1mb": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+      "syncAfterNumber": {
+        "numberValue": "10",
+        "sliderValue": "10"
+      }
+    },
+    {
+      "mode": "random",
+      "sizeKb": 10,
+      "filename": "[TEST]-random-10kb.bin",
+      "expectedBytes": 10240,
+      "actualBytes": 10240,
+      "matchesSize": true,
+      "prefixOk": true,
+      "exactNameOk": true,
+      "zeroAllZero": null,
+      "randomAllZero": false,
+      "sha256Head1mb": "f4d708a894112e5993d3453f6e80983611cdddecd48e6b24fe7c56a836f235e2",
+      "syncAfterNumber": {
+        "numberValue": "10",
+        "sliderValue": "10"
+      }
+    },
+    {
+      "mode": "zero",
+      "sizeKb": 1024,
+      "filename": "[TEST]-zero-1024kb.bin",
+      "expectedBytes": 1048576,
+      "actualBytes": 1048576,
+      "matchesSize": true,
+      "prefixOk": true,
+      "exactNameOk": true,
+      "zeroAllZero": true,
+      "randomAllZero": null,
+      "sha256Head1mb": "30e14955ebf1352266dc2ff8067e68104607e750abb9d3b36582b8af909fcb58",
+      "syncAfterNumber": {
+        "numberValue": "1024",
+        "sliderValue": "1020"
+      }
+    },
+    {
+      "mode": "random",
+      "sizeKb": 1024,
+      "filename": "[TEST]-random-1024kb.bin",
+      "expectedBytes": 1048576,
+      "actualBytes": 1048576,
+      "matchesSize": true,
+      "prefixOk": true,
+      "exactNameOk": true,
+      "zeroAllZero": null,
+      "randomAllZero": false,
+      "sha256Head1mb": "c0514e86ce721e036808c9749321740bedd8e28fcf4dbf40c20cad205bd6b954",
+      "syncAfterNumber": {
+        "numberValue": "1024",
+        "sliderValue": "1020"
+      }
+    },
+    {
+      "mode": "zero",
+      "sizeKb": 10240,
+      "filename": "[TEST]-zero-10240kb.bin",
+      "expectedBytes": 10485760,
+      "actualBytes": 10485760,
+      "matchesSize": true,
+      "prefixOk": true,
+      "exactNameOk": true,
+      "zeroAllZero": true,
+      "randomAllZero": null,
+      "sha256Head1mb": "30e14955ebf1352266dc2ff8067e68104607e750abb9d3b36582b8af909fcb58",
+      "syncAfterNumber": {
+        "numberValue": "10240",
+        "sliderValue": "10240"
+      }
+    },
+    {
+      "mode": "random",
+      "sizeKb": 10240,
+      "filename": "[TEST]-random-10240kb.bin",
+      "expectedBytes": 10485760,
+      "actualBytes": 10485760,
+      "matchesSize": true,
+      "prefixOk": true,
+      "exactNameOk": true,
+      "zeroAllZero": null,
+      "randomAllZero": false,
+      "sha256Head1mb": "efc695ea266e9beec6fb61c41dac1317b43489c5614625750c4cc15ac969dfa0",
+      "syncAfterNumber": {
+        "numberValue": "10240",
+        "sliderValue": "10240"
+      }
+    },
+    {
+      "mode": "zero",
+      "sizeKb": 51200,
+      "filename": "[TEST]-zero-51200kb.bin",
+      "expectedBytes": 52428800,
+      "actualBytes": 52428800,
+      "matchesSize": true,
+      "prefixOk": true,
+      "exactNameOk": true,
+      "zeroAllZero": true,
+      "randomAllZero": null,
+      "sha256Head1mb": "30e14955ebf1352266dc2ff8067e68104607e750abb9d3b36582b8af909fcb58",
+      "syncAfterNumber": {
+        "numberValue": "51200",
+        "sliderValue": "51200"
+      }
+    },
+    {
+      "mode": "random",
+      "sizeKb": 51200,
+      "filename": "[TEST]-random-51200kb.bin",
+      "expectedBytes": 52428800,
+      "actualBytes": 52428800,
+      "matchesSize": true,
+      "prefixOk": true,
+      "exactNameOk": true,
+      "zeroAllZero": null,
+      "randomAllZero": false,
+      "sha256Head1mb": "b777b79feaf79c8669d5334c6d3e9efa763edf90d36e4253a63f2872764f0afe",
+      "syncAfterNumber": {
+        "numberValue": "51200",
+        "sliderValue": "51200"
+      }
+    }
+  ],
+  "browserBurden": {
+    "fiftyMbRandomOk": true,
+    "note": "Headless Chromium 기준 50MB random 생성/버튼 동작 중 치명 오류 미발생"
+  },
+  "mobile": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "bodyScrollWidth": 390,
+    "bodyFontSize": "16px",
+    "labels": [
+      {
+        "text": "파일명(base name)",
+        "right": 352,
+        "width": 314
+      },
+      {
+        "text": "확장자.bin.dat.zero.txt.json",
+        "right": 352,
+        "width": 314
+      },
+      {
+        "text": "데이터 생성 방식Zero-fill (0x00)Random bytes",
+        "right": 352,
+        "width": 314
+      },
+      {
+        "text": "용량(KB)최소 10KB / 최대 50MB(51,200KB) / 입력값은 1024 기준 바이트 크기에 그대로",
+        "right": 352,
+        "width": 314
+      }
+    ]
+  },
+  "screenshots": [
+    "/home/isg11/.openclaw/workspace-song-lead/project/professor-check-please/qa-screenshots/final-qa-desktop.png",
+    "/home/isg11/.openclaw/workspace-song-lead/project/professor-check-please/qa-screenshots/final-qa-mobile.png"
+  ]
+}

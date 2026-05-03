@@ -3,13 +3,13 @@ import { MAX_FILE_BYTES } from "@/lib/file-integrity";
 export const HERO_BADGE = "QA Utility · Binary Stress Test · Browser Safe";
 export const HERO_TITLE = "범용 바이너리 스트레스 테스트 유틸리티";
 export const HERO_SUBCOPY =
-  "서버의 대용량 파일 처리 및 비정형 데이터 대응 능력을 검증하기 위한 도구입니다. 브라우저 안에서 테스트 파일을 생성하고 즉시 다운로드해 업로드 제한, 예외 처리, 파이프라인 복원력을 빠르게 점검할 수 있습니다.";
+  "서버의 파일 업로드 보안 및 비정형 바이너리 처리 능력을 테스트하기 위한 범용 유틸리티입니다. 브라우저 안에서 테스트 파일을 생성하고 즉시 다운로드해 업로드 제한, 예외 처리, 파이프라인 복원력을 빠르게 점검할 수 있습니다.";
 export const HERO_BANNER =
   "생성기는 실무 테스트 흐름에 맞춰 파일명, 확장자, 바이트 크기, 데이터 패턴을 빠르게 조합하도록 설계했습니다. 생성 파일은 모두 테스트 전용 라벨이 붙고 서버에 저장되지 않습니다.";
 
 export const BANNER_BULLETS = [
   "브라우저 내 생성 / 서버 전송 없음",
-  "[TEST]- 접두사 자동 적용",
+  "[TEST][PARODY]_ 접두사 자동 적용",
   "안전 확장자 목록만 제공",
   "10KB ~ 50MB 실바이트 기준 생성",
 ] as const;
@@ -59,7 +59,7 @@ export function buildFileCheckHelper(acceptedTypes: string) {
 
 export const GENERATOR = {
   title: "테스트 파일 생성기",
-  subcopy: "서버의 대용량 파일 처리 및 비정형 데이터 대응 능력을 검증하기 위한 도구입니다.",
+  subcopy: "서버의 파일 업로드 보안 및 비정형 바이너리 처리 능력을 테스트하기 위한 범용 유틸리티",
   microcopy: "생성 즉시 다운로드되며, 업로드 리허설·필터 검증·저장소 스트레스 테스트에 바로 사용할 수 있습니다.",
   topicLabel: "파일명(base name)",
   topicPlaceholder: "예: load-test-01",
@@ -71,7 +71,7 @@ export const GENERATOR = {
   filenameLabel: "생성 파일명",
   labelGuide: "안전 표기",
   lastDownloadLabel: "최근 다운로드",
-  labelValue: "[TEST]- 접두사 / 테스트 전용 / 브라우저 로컬 생성",
+  labelValue: "[TEST][PARODY]_ 접두사 / 테스트 전용 / 브라우저 로컬 생성",
   modeZero: "Zero-fill (0x00)",
   modeRandom: "Random bytes",
   sliderLabel: "슬라이더 조정",
@@ -99,6 +99,6 @@ export const FAQ_ITEMS = [
   },
   {
     question: "왜 확장자를 자유 입력이 아니라 선택식으로 제한하나요?",
-    answer: "테스트 범위를 관리하고 오용 가능성을 줄이기 위해 실행형/문서 사칭 소지가 큰 확장자는 제외하고 .bin, .dat, .zero, .txt, .json, .csv, .tsv, .log, .md, .xml, .yaml, .yml, .ini, .cfg만 안전 목록으로 제공합니다.",
+    answer: "테스트 범위를 관리하고 오용 가능성을 줄이기 위해 실행형/문서 사칭 소지가 큰 확장자는 제외하고 주요 문서(hwp, docx, pdf 등), 데이터(json, xml, sql 등), 시스템(bin, log, env 등) 파일 포맷을 안전 목록으로 제공합니다.",
   },
 ] as const;
