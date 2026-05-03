@@ -9,9 +9,10 @@ import { RiskBanner } from "@/components/home/risk-banner";
 import { SampleDownloadSection } from "@/components/home/sample-download-section";
 import { downloadBlob } from "@/lib/download";
 import {
-  buildDummyFilename,
-  createEducationalDummyFile,
-  type DummyKind,
+  buildTestFilename,
+  createTestFileBlob,
+  type GeneratorMode,
+  type SafeExtension,
 } from "@/lib/dummy-file";
 import {
   ALLOWED_EXTENSIONS,
@@ -23,8 +24,10 @@ type HomeState = {
   selectedFile: File | null;
   integrityResult: IntegrityResult | null;
   isChecking: boolean;
-  topic: string;
-  dummyKind: DummyKind;
+  baseName: string;
+  extension: SafeExtension;
+  mode: GeneratorMode;
+  sizeKb: number;
   lastDownload: string;
 };
 
@@ -32,8 +35,10 @@ const INITIAL_STATE: HomeState = {
   selectedFile: null,
   integrityResult: null,
   isChecking: false,
-  topic: "과제-샘플",
-  dummyKind: "txt",
+  baseName: "load-test-01",
+  extension: "bin",
+  mode: "zero",
+  sizeKb: 1024,
   lastDownload: "",
 };
 
@@ -58,9 +63,10 @@ export function HomeClient() {
     }
   };
 
-  const onGenerateDummy = () => {
-    const blob = createEducationalDummyFile(state.dummyKind, state.topic);
-    const filename = buildDummyFilename(state.dummyKind, state.topic);
+  const onGenerate = () => {
+    const sizeBytes = Math.max(10, Math.min(state.sizeKb, 51200)) * 1024;
+    const blob = createTestFileBlob(sizeBytes, state.mode);
+    const filename = buildTestFilename(state.baseName, state.extension);
     downloadBlob(blob, filename);
     setState((current) => ({ ...current, lastDownload: filename }));
   };
@@ -70,8 +76,20 @@ export function HomeClient() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
         <RiskBanner />
         <HeroSection />
+        <SampleDownloadSection
+          baseName={state.baseName}
+          extension={state.extension}
+          mode={state.mode}
+          sizeKb={state.sizeKb}
+          lastDownload={state.lastDownload}
+          onBaseNameChange={(baseName) => setState((current) => ({ ...current, baseName }))}
+          onExtensionChange={(extension) => setState((current) => ({ ...current, extension }))}
+          onModeChange={(mode) => setState((current) => ({ ...current, mode }))}
+          onSizeKbChange={(sizeKb) => setState((current) => ({ ...current, sizeKb }))}
+          onGenerate={onGenerate}
+        />
 
-        <section className="grid gap-6 lg:grid-cols-2">
+        <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <FileCheckSection
             acceptedTypes={acceptedTypes}
             selectedFile={state.selectedFile}
@@ -80,18 +98,8 @@ export function HomeClient() {
             onFileSelect={handleFileSelect}
             onCheckFile={onCheckFile}
           />
-
-          <SampleDownloadSection
-            topic={state.topic}
-            dummyKind={state.dummyKind}
-            lastDownload={state.lastDownload}
-            onTopicChange={(topic) => setState((current) => ({ ...current, topic }))}
-            onDummyKindChange={(dummyKind) => setState((current) => ({ ...current, dummyKind }))}
-            onGenerateDummy={onGenerateDummy}
-          />
+          <InfoSections />
         </section>
-
-        <InfoSections />
       </div>
     </main>
   );

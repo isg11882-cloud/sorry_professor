@@ -1,47 +1,49 @@
-export type DummyKind = "txt" | "json";
-
 export const FILE_NAME_PREFIX = "[TEST][PARODY]";
-const SAFETY_LABEL = "[교육용 더미 파일 / TEST / PARODY / 제출 금지]";
+export const SAFE_EXTENSIONS = ["bin", "dat", "zero", "txt", "json"] as const;
+export const GENERATOR_MODES = ["zero", "random"] as const;
 
-export function createEducationalDummyFile(kind: DummyKind, topic: string): Blob {
-  const safeTopic = topic.trim() || "sample-topic";
+export type SafeExtension = (typeof SAFE_EXTENSIONS)[number];
+export type GeneratorMode = (typeof GENERATOR_MODES)[number];
 
-  if (kind === "txt") {
-    const content = [
-      SAFETY_LABEL,
-      "",
-      `주제: ${safeTopic}`,
-      "이 파일은 교육/시연 목적의 예시 데이터입니다.",
-      "실제 과제, 보고서, 제출물로 사용하면 안 됩니다.",
-      `생성시각: ${new Date().toISOString()}`,
-    ].join("\n");
+const SAFETY_LABEL = "Generated for resilience/stress testing only. Not for real submission or production data.";
 
-    return new Blob([content], { type: "text/plain;charset=utf-8" });
+export function createTestFileBlob(sizeBytes: number, mode: GeneratorMode): Blob {
+  const normalizedSize = Math.max(10 * 1024, Math.min(sizeBytes, 50 * 1024 * 1024));
+
+  if (mode === "zero") {
+    return new Blob([new Uint8Array(normalizedSize)], { type: "application/octet-stream" });
   }
 
-  const payload = {
-    label: SAFETY_LABEL,
-    topic: safeTopic,
-    purpose: "education-demo-only",
-    warning: "실제 제출/업무용 사용 금지",
-    createdAt: new Date().toISOString(),
-    sampleData: [
-      { id: 1, title: `${safeTopic}-sample-1`, status: "draft" },
-      { id: 2, title: `${safeTopic}-sample-2`, status: "review" },
-    ],
-  };
+  const bytes = new Uint8Array(normalizedSize);
+  const chunkSize = 65_536;
 
-  return new Blob([JSON.stringify(payload, null, 2)], {
-    type: "application/json;charset=utf-8",
-  });
+  for (let offset = 0; offset < bytes.length; offset += chunkSize) {
+    const end = Math.min(offset + chunkSize, bytes.length);
+    crypto.getRandomValues(bytes.subarray(offset, end));
+  }
+
+  return new Blob([bytes], { type: "application/octet-stream" });
 }
 
-export function buildDummyFilename(kind: DummyKind, topic: string) {
-  const slug = (topic.trim() || "sample-topic")
-    .toLowerCase()
-    .replace(/[^a-z0-9가-힣]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 30);
+export function buildTestFilename(baseName: string, extension: SafeExtension) {
+  const safeBaseName = (baseName.trim() || "stress-sample")
+    .replace(/[\\/:*?"<>|]+/g, "-")
+    .replace(/\s+/g, "-")
+    .slice(0, 60);
 
-  return `${FILE_NAME_PREFIX}-${slug || "sample-topic"}.${kind}`;
+  return `${FILE_NAME_PREFIX}-${safeBaseName}.${extension}`;
+}
+
+export function buildGeneratorSummary(params: {
+  baseName: string;
+  extension: SafeExtension;
+  sizeBytes: number;
+  mode: GeneratorMode;
+}) {
+  return {
+    filename: buildTestFilename(params.baseName, params.extension),
+    sizeBytes: params.sizeBytes,
+    mode: params.mode,
+    label: SAFETY_LABEL,
+  };
 }
