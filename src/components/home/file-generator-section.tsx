@@ -69,17 +69,22 @@ export function FileGeneratorSection({
           </select>
         </label>
 
-        <label className="text-sm font-bold">
-          {GENERATOR.dataModeLabel}
-          <select
-            value={mode}
-            onChange={(event) => onModeChange(event.target.value as GeneratorMode)}
-            className="mt-2 w-full border-2 border-black bg-white px-3 py-2"
-          >
-            <option value="zero">{GENERATOR.modeZero}</option>
-            <option value="random">{GENERATOR.modeRandom}</option>
-          </select>
-        </label>
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-bold">
+            {GENERATOR.dataModeLabel}
+            <select
+              value={mode}
+              onChange={(event) => onModeChange(event.target.value as GeneratorMode)}
+              className="mt-2 w-full border-2 border-black bg-white px-3 py-2"
+            >
+              <option value="zero">{GENERATOR.modeZero}</option>
+              <option value="random">{GENERATOR.modeRandom}</option>
+            </select>
+          </label>
+          <p className="text-xs text-slate-500">
+            {mode === "zero" ? GENERATOR.modeZeroDesc : GENERATOR.modeRandomDesc}
+          </p>
+        </div>
 
         <label className="text-sm font-bold">
           {GENERATOR.sizeLabel}
@@ -105,22 +110,30 @@ export function FileGeneratorSection({
           step={1}
           value={normalizedSizeKb}
           onChange={(event) => onSizeKbChange(normalizeSizeKb(event.target.valueAsNumber))}
-          className="w-full"
+          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-black"
         />
       </div>
 
-      <button className="retro-button retro-button-secondary mt-5 w-full sm:w-auto" onClick={onGenerate}>
+      <button className="retro-button retro-button-secondary mt-5 w-full sm:w-auto font-black text-lg py-3" onClick={onGenerate}>
         {GENERATOR.cta}
       </button>
 
-      <div className="mt-4 rounded border-2 border-dashed border-black bg-white p-3 text-sm leading-6">
-        <div><strong>{GENERATOR.filenameLabel}:</strong> {buildTestFilename(baseName, extension)}</div>
-        <div><strong>{GENERATOR.labelGuide}:</strong> {GENERATOR.labelValue}</div>
-        <div><strong>파일명 접두사:</strong> {FILE_NAME_PREFIX}</div>
-        <div><strong>설정 용량:</strong> {normalizedSizeKb.toLocaleString()} KB</div>
-        <div><strong>{GENERATOR.byteSizeLabel}:</strong> {sizeBytes.toLocaleString()} bytes</div>
-        <div><strong>데이터 패턴:</strong> {mode === "zero" ? GENERATOR.modeZero : GENERATOR.modeRandom}</div>
-        {lastDownload ? <div><strong>{GENERATOR.lastDownloadLabel}:</strong> {lastDownload}</div> : null}
+      <div className="mt-6 rounded-lg border-2 border-black bg-slate-50 p-4 text-sm leading-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div className="mb-2 flex items-center gap-2 border-b-2 border-slate-200 pb-2 font-black uppercase tracking-wider text-slate-400">
+          <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
+          제출용 파일 정보
+        </div>
+        <div className="grid gap-x-4 gap-y-1 sm:grid-cols-2">
+          <div><span className="font-bold text-slate-500">{GENERATOR.filenameLabel}:</span> <span className="font-mono text-blue-600 underline">{buildTestFilename(baseName, extension)}</span></div>
+          <div><span className="font-bold text-slate-500">설정 용량:</span> {normalizedSizeKb.toLocaleString()} KB</div>
+          <div><span className="font-bold text-slate-500">데이터 패턴:</span> {mode === "zero" ? "속 빈 강정" : "진흙탕"}</div>
+          <div><span className="font-bold text-slate-500">{GENERATOR.labelGuide}:</span> <span className="text-red-500 font-black">{GENERATOR.labelValue}</span></div>
+        </div>
+        {lastDownload ? (
+          <div className="mt-3 border-t-2 border-dashed border-slate-200 pt-2 text-xs">
+            <strong>{GENERATOR.lastDownloadLabel}:</strong> {lastDownload}
+          </div>
+        ) : null}
       </div>
     </article>
   );

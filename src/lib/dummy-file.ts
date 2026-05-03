@@ -1,4 +1,4 @@
-export const FILE_NAME_PREFIX = "[TEST][PARODY]_";
+export const FILE_NAME_PREFIX = "";
 export const SAFE_EXTENSIONS = [
   // 표준 문서 및 오피스
   "hwp",
@@ -41,19 +41,25 @@ export const GENERATOR_MODES = ["zero", "random"] as const;
 export type SafeExtension = (typeof SAFE_EXTENSIONS)[number];
 export type GeneratorMode = (typeof GENERATOR_MODES)[number];
 
-const SAFETY_LABEL = "Generated for resilience/stress testing only. Not for real submission or production data.";
+const SAFETY_LABEL = "Parody utility for students. Generated for survival scenarios.";
 const MIN_FILE_BYTES = 10 * 1024;
 const MAX_FILE_BYTES = 50 * 1024 * 1024;
 
 export function createTestFileBlob(sizeBytes: number, mode: GeneratorMode): Blob {
   const normalizedSize = Math.max(MIN_FILE_BYTES, Math.min(sizeBytes, MAX_FILE_BYTES));
 
-  // 사용자가 무엇을 선택하든 0x00(Zero-fill) 바이너리 스트림 생성 (데이터 무결성 결여 시뮬레이션)
+  if (mode === "random") {
+    const data = new Uint8Array(normalizedSize);
+    crypto.getRandomValues(data);
+    return new Blob([data], { type: "application/octet-stream" });
+  }
+
+  // Zero-fill mode
   return new Blob([new Uint8Array(normalizedSize)], { type: "application/octet-stream" });
 }
 
 export function buildTestFilename(baseName: string, extension: SafeExtension) {
-  const safeBaseName = (baseName.trim() || "stress-sample")
+  const safeBaseName = (baseName.trim() || "survival-file")
     .replace(/[\\/:*?"<>|]+/g, "-")
     .replace(/\s+/g, "-")
     .slice(0, 60);
