@@ -1,10 +1,4 @@
-import {
-  buildTestFilename,
-  FILE_NAME_PREFIX,
-  SAFE_EXTENSIONS,
-  type GeneratorMode,
-  type SafeExtension,
-} from "@/lib/dummy-file";
+import { buildTestFilename, SAFE_EXTENSIONS, type GeneratorMode, type SafeExtension } from "@/lib/dummy-file";
 import { MAX_SIZE_KB, MIN_SIZE_KB, normalizeSizeKb } from "@/lib/file-size";
 
 import { GENERATOR } from "./content";
@@ -35,7 +29,6 @@ export function FileGeneratorSection({
   onGenerate,
 }: FileGeneratorSectionProps) {
   const normalizedSizeKb = normalizeSizeKb(sizeKb);
-  const sizeBytes = normalizedSizeKb * 1024;
 
   return (
     <article className="retro-window p-5 lg:p-6">

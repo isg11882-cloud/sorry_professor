@@ -152,3 +152,15 @@ button {
   background: #fef3c7;
   padding: 14px;
 }
+
+.sponsor-card {
+  border: 2px solid #000;
+  background: linear-gradient(180deg, #fff9db 0%, #f3f4f6 100%);
+  padding: 18px;
+  box-shadow: inset -2px -2px 0 #9ca3af, inset 2px 2px 0 white;
+}
+
+.sponsor-card-cta {
+  min-width: 132px;
+  background: #e0f2fe;
+}

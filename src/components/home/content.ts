@@ -1,5 +1,3 @@
-import { MAX_FILE_BYTES } from "@/lib/file-integrity";
-
 export const HERO_BADGE = "대학생용 공감형 패러디 유틸리티";
 export const HERO_TITLE = "교수님 확인 부탁드립니다";
 export const HERO_SUBCOPY =

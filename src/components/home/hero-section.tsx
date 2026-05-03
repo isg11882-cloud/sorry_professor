@@ -26,7 +26,7 @@ export function HeroSection() {
         </div>
 
         <aside className="bsod-panel bg-blue-700 p-6 text-white border-4 border-double border-white">
-          <p className="text-lg font-semibold leading-8 italic">"교수님, 제 파일이... 안 열린다고요?"</p>
+          <p className="text-lg font-semibold leading-8 italic">&quot;교수님, 제 파일이... 안 열린다고요?&quot;</p>
           <p className="mt-4 text-sm leading-6 text-blue-100">{HERO_BANNER}</p>
           <ul className="mt-5 space-y-2 text-sm leading-6 text-yellow-200">
             {BANNER_BULLETS.map((item) => (
