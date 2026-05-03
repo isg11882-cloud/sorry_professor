@@ -3,10 +3,10 @@
 import { useMemo, useState } from "react";
 
 import { FileCheckSection } from "@/components/home/file-check-section";
+import { FileGeneratorSection } from "@/components/home/file-generator-section";
 import { HeroSection } from "@/components/home/hero-section";
 import { InfoSections } from "@/components/home/info-sections";
 import { RiskBanner } from "@/components/home/risk-banner";
-import { SampleDownloadSection } from "@/components/home/sample-download-section";
 import { downloadBlob } from "@/lib/download";
 import {
   buildTestFilename,
@@ -42,6 +42,9 @@ const INITIAL_STATE: HomeState = {
   lastDownload: "",
 };
 
+const MIN_SIZE_KB = 10;
+const MAX_SIZE_KB = 51200;
+
 export function HomeClient() {
   const [state, setState] = useState<HomeState>(INITIAL_STATE);
 
@@ -64,19 +67,19 @@ export function HomeClient() {
   };
 
   const onGenerate = () => {
-    const sizeBytes = Math.max(10, Math.min(state.sizeKb, 51200)) * 1024;
+    const normalizedSizeKb = Math.max(MIN_SIZE_KB, Math.min(state.sizeKb || MIN_SIZE_KB, MAX_SIZE_KB));
+    const sizeBytes = normalizedSizeKb * 1024;
     const blob = createTestFileBlob(sizeBytes, state.mode);
     const filename = buildTestFilename(state.baseName, state.extension);
     downloadBlob(blob, filename);
-    setState((current) => ({ ...current, lastDownload: filename }));
+    setState((current) => ({ ...current, sizeKb: normalizedSizeKb, lastDownload: filename }));
   };
 
   return (
     <main className="min-h-screen bg-[var(--bg)] px-4 py-6 text-[var(--ink)] sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
         <RiskBanner />
-        <HeroSection />
-        <SampleDownloadSection
+        <FileGeneratorSection
           baseName={state.baseName}
           extension={state.extension}
           mode={state.mode}
@@ -88,6 +91,7 @@ export function HomeClient() {
           onSizeKbChange={(sizeKb) => setState((current) => ({ ...current, sizeKb }))}
           onGenerate={onGenerate}
         />
+        <HeroSection />
 
         <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <FileCheckSection

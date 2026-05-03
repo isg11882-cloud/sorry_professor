@@ -1,4 +1,4 @@
-export const FILE_NAME_PREFIX = "[TEST][PARODY]";
+export const FILE_NAME_PREFIX = "[TEST]";
 export const SAFE_EXTENSIONS = ["bin", "dat", "zero", "txt", "json"] as const;
 export const GENERATOR_MODES = ["zero", "random"] as const;
 
@@ -6,9 +6,11 @@ export type SafeExtension = (typeof SAFE_EXTENSIONS)[number];
 export type GeneratorMode = (typeof GENERATOR_MODES)[number];
 
 const SAFETY_LABEL = "Generated for resilience/stress testing only. Not for real submission or production data.";
+const MIN_FILE_BYTES = 10 * 1024;
+const MAX_FILE_BYTES = 50 * 1024 * 1024;
 
 export function createTestFileBlob(sizeBytes: number, mode: GeneratorMode): Blob {
-  const normalizedSize = Math.max(10 * 1024, Math.min(sizeBytes, 50 * 1024 * 1024));
+  const normalizedSize = Math.max(MIN_FILE_BYTES, Math.min(sizeBytes, MAX_FILE_BYTES));
 
   if (mode === "zero") {
     return new Blob([new Uint8Array(normalizedSize)], { type: "application/octet-stream" });
@@ -42,7 +44,7 @@ export function buildGeneratorSummary(params: {
 }) {
   return {
     filename: buildTestFilename(params.baseName, params.extension),
-    sizeBytes: params.sizeBytes,
+    sizeBytes: Math.max(MIN_FILE_BYTES, Math.min(params.sizeBytes, MAX_FILE_BYTES)),
     mode: params.mode,
     label: SAFETY_LABEL,
   };

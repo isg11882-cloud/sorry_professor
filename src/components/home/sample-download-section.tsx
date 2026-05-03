@@ -6,7 +6,7 @@ import {
   type SafeExtension,
 } from "@/lib/dummy-file";
 
-import { SAMPLE_DOWNLOAD } from "./content";
+import { GENERATOR } from "./content";
 
 type SampleDownloadSectionProps = {
   baseName: string;
@@ -35,23 +35,23 @@ export function SampleDownloadSection({
 }: SampleDownloadSectionProps) {
   return (
     <article className="retro-window p-5 lg:p-6">
-      <h2 className="mb-2 text-3xl font-black">{SAMPLE_DOWNLOAD.title}</h2>
-      <p className="mb-2 text-sm leading-6 text-slate-700">{SAMPLE_DOWNLOAD.subcopy}</p>
-      <p className="mb-5 font-bold text-slate-900">{SAMPLE_DOWNLOAD.microcopy}</p>
+      <h2 className="mb-2 text-3xl font-black">{GENERATOR.title}</h2>
+      <p className="mb-2 text-sm leading-6 text-slate-700">{GENERATOR.subcopy}</p>
+      <p className="mb-5 font-bold text-slate-900">{GENERATOR.microcopy}</p>
 
       <div className="grid gap-4 md:grid-cols-2">
         <label className="text-sm font-bold">
-          {SAMPLE_DOWNLOAD.topicLabel}
+          {GENERATOR.topicLabel}
           <input
             value={baseName}
             onChange={(event) => onBaseNameChange(event.target.value)}
             className="mt-2 w-full border-2 border-black bg-white px-3 py-2"
-            placeholder={SAMPLE_DOWNLOAD.topicPlaceholder}
+            placeholder={GENERATOR.topicPlaceholder}
           />
         </label>
 
         <label className="text-sm font-bold">
-          {SAMPLE_DOWNLOAD.formatLabel}
+          {GENERATOR.formatLabel}
           <select
             value={extension}
             onChange={(event) => onExtensionChange(event.target.value as SafeExtension)}
@@ -66,19 +66,19 @@ export function SampleDownloadSection({
         </label>
 
         <label className="text-sm font-bold">
-          {SAMPLE_DOWNLOAD.dataModeLabel}
+          {GENERATOR.dataModeLabel}
           <select
             value={mode}
             onChange={(event) => onModeChange(event.target.value as GeneratorMode)}
             className="mt-2 w-full border-2 border-black bg-white px-3 py-2"
           >
-            <option value="zero">{SAMPLE_DOWNLOAD.modeZero}</option>
-            <option value="random">{SAMPLE_DOWNLOAD.modeRandom}</option>
+            <option value="zero">{GENERATOR.modeZero}</option>
+            <option value="random">{GENERATOR.modeRandom}</option>
           </select>
         </label>
 
         <label className="text-sm font-bold">
-          {SAMPLE_DOWNLOAD.sizeLabel}
+          {GENERATOR.sizeLabel}
           <input
             type="number"
             min={10}
@@ -88,11 +88,12 @@ export function SampleDownloadSection({
             onChange={(event) => onSizeKbChange(Number(event.target.value) || 10)}
             className="mt-2 w-full border-2 border-black bg-white px-3 py-2"
           />
-          <span className="mt-2 block text-xs font-normal text-slate-600">{SAMPLE_DOWNLOAD.sizeHint}</span>
+          <span className="mt-2 block text-xs font-normal text-slate-600">{GENERATOR.sizeHint}</span>
         </label>
       </div>
 
       <div className="mt-4">
+        <div className="mb-1 text-xs font-bold text-slate-700">{GENERATOR.sliderLabel}</div>
         <input
           type="range"
           min={10}
@@ -105,16 +106,16 @@ export function SampleDownloadSection({
       </div>
 
       <button className="retro-button retro-button-secondary mt-5 w-full sm:w-auto" onClick={onGenerate}>
-        {SAMPLE_DOWNLOAD.cta}
+        {GENERATOR.cta}
       </button>
 
       <div className="mt-4 rounded border-2 border-dashed border-black bg-white p-3 text-sm leading-6">
-        <div><strong>{SAMPLE_DOWNLOAD.filenameLabel}:</strong> {buildTestFilename(baseName, extension)}</div>
-        <div><strong>{SAMPLE_DOWNLOAD.labelGuide}:</strong> {SAMPLE_DOWNLOAD.labelValue}</div>
+        <div><strong>{GENERATOR.filenameLabel}:</strong> {buildTestFilename(baseName, extension)}</div>
+        <div><strong>{GENERATOR.labelGuide}:</strong> {GENERATOR.labelValue}</div>
         <div><strong>파일명 접두사:</strong> {FILE_NAME_PREFIX}</div>
-        <div><strong>설정 용량:</strong> {sizeKb.toLocaleString()} KB</div>
-        <div><strong>데이터 패턴:</strong> {mode === "zero" ? SAMPLE_DOWNLOAD.modeZero : SAMPLE_DOWNLOAD.modeRandom}</div>
-        {lastDownload ? <div><strong>{SAMPLE_DOWNLOAD.lastDownloadLabel}:</strong> {lastDownload}</div> : null}
+        <div><strong>{GENERATOR.byteSizeLabel}:</strong> {(sizeKb * 1024).toLocaleString()} bytes</div>
+        <div><strong>데이터 패턴:</strong> {mode === "zero" ? GENERATOR.modeZero : GENERATOR.modeRandom}</div>
+        {lastDownload ? <div><strong>{GENERATOR.lastDownloadLabel}:</strong> {lastDownload}</div> : null}
       </div>
     </article>
   );
