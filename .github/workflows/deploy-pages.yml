@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_GTM_ID: GTM-WSKBCHS9
+      NEXT_PUBLIC_GA_ID: G-9NZS2DW4TE
       NEXT_PUBLIC_SITE_URL: https://isg11882-cloud.github.io/sorry_professor
       GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
       NAVER_SITE_VERIFICATION: ${{ vars.NAVER_SITE_VERIFICATION }}
