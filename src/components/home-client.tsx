@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { FileGeneratorSection } from "@/components/home/file-generator-section";
 import { HeroSection } from "@/components/home/hero-section";
+import { SponsorRecommendationSection } from "@/components/home/sponsor-recommendation-section";
 import { SurvivalScenarioSection } from "@/components/home/survival-scenario-section";
 import { SurvivalModal } from "@/components/home/survival-modal";
 import { downloadBlob } from "@/lib/download";
@@ -65,6 +66,7 @@ export function HomeClient() {
           onSizeKbChange={(sizeKb) => setState((current) => ({ ...current, sizeKb: normalizeSizeKb(sizeKb) }))}
           onGenerate={onGenerate}
         />
+        <SponsorRecommendationSection />
         <SurvivalScenarioSection />
       </div>
 
