@@ -126,7 +126,7 @@ export function OgImage({ title, subtitle, footer }: OgImageProps) {
                   color: "#dbeafe",
                 }}
               >
-                과제 마감 직전, 절박한 대학생의 골든타임을 벌어주는 레트로 생존 전략 도구.
+                과제 제출 상황을 유쾌하게 패러디한 브라우저 기반 손상 파일 테스트 유틸리티.
               </div>
             </div>
 
@@ -160,7 +160,7 @@ export function OgImage({ title, subtitle, footer }: OgImageProps) {
           }}
         >
           <div style={{ display: "flex", color: "#0f172a" }}>{footer}</div>
-          <div style={{ display: "flex", color: "#dc2626" }}>SPONSORED · 🎁기프투데이</div>
+          <div style={{ display: "flex", color: "#dc2626" }}>STATIC EXPORT · NEXT.JS APP ROUTER</div>
         </div>
       </div>
     </div>

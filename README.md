@@ -59,6 +59,31 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
 정적 export 기준이라 빌드 시점에 환경변수가 반영되어야 합니다.
 
+## SEO / 검색엔진 노출 준비
+
+다음 항목이 반영되어 있습니다.
+
+- canonical / open graph / twitter metadata
+- `robots.txt` 자동 생성
+- `sitemap.xml` 자동 생성
+- `manifest.webmanifest` 생성
+- 구조화 데이터(JSON-LD: `WebSite`, `WebApplication`)
+- 구글 / 네이버 사이트 인증 메타 삽입용 환경변수 자리
+
+예시:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://example.com
+GOOGLE_SITE_VERIFICATION=
+NAVER_SITE_VERIFICATION=
+```
+
+실제 노출을 위해서는 배포 후 아래 외부 작업이 추가로 필요합니다.
+
+- Google Search Console에 사이트 등록 및 sitemap 제출
+- 네이버 서치어드바이저에 사이트 등록 및 sitemap 제출
+- 실제 운영 도메인을 `NEXT_PUBLIC_SITE_URL`에 반영 후 재빌드/재배포
+
 ## 검증
 
 ```bash

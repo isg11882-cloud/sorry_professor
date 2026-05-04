@@ -53,7 +53,7 @@ export const GENERATOR = {
   subcopy: "교수님도, 조교님도 깜빡 속아 넘어갈 완벽한 손상 파일을 생성합니다.",
   microcopy: "다운로드 후 즉시 제출하세요. 당신의 성적을 지켜드립니다.",
   topicLabel: "파일명",
-  topicPlaceholder: "반투명하게 파일명을 입력하세요.",
+  topicPlaceholder: "파일명을 입력하세요.",
   formatLabel: "확장자",
   dataModeLabel: "데이터 파손 모드",
   sizeLabel: "용량(KB)",

@@ -2,6 +2,15 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { GoogleAnalytics } from "@/components/google-analytics";
+import {
+  getCanonicalUrl,
+  getSiteUrl,
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_LOCALE,
+  SITE_NAME,
+  SITE_TITLE,
+} from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,34 +23,73 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+const siteUrl = getSiteUrl();
+const canonicalUrl = getCanonicalUrl();
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
+const naverSiteVerification = process.env.NAVER_SITE_VERIFICATION?.trim();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "교수님 확인 부탁드립니다",
-  description:
-    "과제 마감 1분 전, 절박한 대학생들을 위한 지성인의 생존 전략! 교수님도 속아 넘어갈 완벽한 손상 파일을 생성해드립니다.",
+  metadataBase: new URL(`${siteUrl}/`),
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [...SITE_KEYWORDS],
+  applicationName: SITE_NAME,
+  alternates: {
+    canonical: canonicalUrl,
+  },
+  category: "utilities",
+  classification: "패러디형 브라우저 유틸리티",
+  referrer: "origin-when-cross-origin",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  verification:
+    googleSiteVerification || naverSiteVerification
+      ? {
+          ...(googleSiteVerification ? { google: googleSiteVerification } : {}),
+          ...(naverSiteVerification
+            ? { other: { "naver-site-verification": naverSiteVerification } }
+            : {}),
+        }
+      : undefined,
   openGraph: {
-    title: "교수님 확인 부탁드립니다",
-    description:
-      "과제 마감 1분 전, 절박한 대학생들을 위한 지성인의 생존 전략! 교수님도 속아 넘어갈 완벽한 손상 파일을 생성해드립니다.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: canonicalUrl,
+    siteName: SITE_NAME,
     type: "website",
-    locale: "ko_KR",
+    locale: SITE_LOCALE,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "교수님 확인 부탁드립니다 링크 프리뷰",
+        alt: `${SITE_NAME} 링크 미리보기 이미지`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "교수님 확인 부탁드립니다",
-    description:
-      "과제 마감 1분 전, 절박한 대학생들을 위한 지성인의 생존 전략! 교수님도 속아 넘어갈 완벽한 손상 파일을 생성해드립니다.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: ["/twitter-image"],
+  },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 

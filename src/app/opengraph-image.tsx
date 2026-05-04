@@ -14,8 +14,8 @@ export default function OpenGraphImage() {
   return new ImageResponse(
     <OgImage
       title="교수님 확인 부탁드립니다"
-      subtitle="과제 마감 1분 전, 손상된 파일이라는 전설의 변명에 레트로 감성을 얹은 패러디 유틸리티."
-      footer="완벽하게 손상됨 / 복구 불가능 / 제출 준비 완료"
+      subtitle="과제 제출 상황을 유쾌하게 패러디한 브라우저 기반 손상 파일 테스트 유틸리티입니다."
+      footer="브라우저 즉시 생성 / 다양한 확장자 지원 / 정적 배포 대응"
     />,
     size,
   );

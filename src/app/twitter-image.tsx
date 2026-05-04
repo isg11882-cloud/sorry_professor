@@ -14,8 +14,8 @@ export default function TwitterImage() {
   return new ImageResponse(
     <OgImage
       title="교수님 확인 부탁드립니다"
-      subtitle="교수님도 조교님도 깜빡 속을 듯한 레트로 패러디 톤의 생존 전략 랜딩 페이지."
-      footer="긴급 파일 생성기 + 생존 시나리오 + 🎁기프투데이 스폰서 블록"
+      subtitle="브라우저에서 바로 더미 파일을 생성할 수 있는 레트로 콘셉트의 패러디 웹앱입니다."
+      footer="패러디 웹앱 / 손상 파일 테스트 / 공유용 미리보기"
     />,
     size,
   );
