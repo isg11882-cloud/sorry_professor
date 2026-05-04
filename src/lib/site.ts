@@ -1,4 +1,7 @@
-const DEFAULT_SITE_URL = "https://example.com";
+const DEFAULT_SITE_URL =
+  process.env.GITHUB_ACTIONS === "true"
+    ? "https://isg11882-cloud.github.io/sorry_professor"
+    : "https://example.com";
 
 export const SITE_NAME = "교수님 확인 부탁드립니다";
 export const SITE_TITLE = `${SITE_NAME} | 패러디 손상 파일 생성기`;
@@ -26,6 +29,13 @@ export function getSiteUrl() {
   return rawValue.endsWith("/") ? rawValue.slice(0, -1) : rawValue;
 }
 
+export function getSiteOrigin() {
+  return new URL(getSiteUrl()).origin;
+}
+
 export function getCanonicalUrl(path = "/") {
-  return new URL(path, `${getSiteUrl()}/`).toString();
+  const baseUrl = getSiteUrl();
+  const normalizedPath = path === "/" ? "" : path.replace(/^\/+/, "");
+
+  return normalizedPath ? `${baseUrl}/${normalizedPath}` : `${baseUrl}/`;
 }

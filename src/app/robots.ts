@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-import { getCanonicalUrl, getSiteUrl } from "@/lib/site";
+import { getCanonicalUrl, getSiteOrigin } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: getCanonicalUrl("/sitemap.xml"),
-    host: getSiteUrl(),
+    host: getSiteOrigin(),
   };
 }
