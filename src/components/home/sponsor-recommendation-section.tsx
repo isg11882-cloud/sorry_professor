@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { SPONSOR_ADS } from "./sponsor-ads";
 
 export function SponsorRecommendationSection() {
@@ -26,30 +24,18 @@ export function SponsorRecommendationSection() {
                     <span className="sponsor-wordmark-logo-dot sponsor-wordmark-logo-dot-right" />
                     <span className="sponsor-wordmark-logo-dot sponsor-wordmark-logo-dot-bottom" />
                   </span>
-                  <span className="sponsor-wordmark-title">{ad.advertiser.toUpperCase()}</span>
+                  <span className="sponsor-wordmark-title">{ad.advertiser}</span>
                 </div>
                 <span className="sponsor-wordmark-subtitle">{ad.brandHint}</span>
               </div>
             </div>
 
-            <div className="grid gap-4 lg:grid-cols-[minmax(0,1.45fr)_220px] lg:items-center">
-              <div className="space-y-3">
-                <div className="space-y-2">
-                  <h2 className="text-xl font-black text-slate-900 sm:text-2xl">{ad.headline}</h2>
-                  <p className="max-w-2xl text-sm leading-6 text-slate-700">{ad.body}</p>
-                </div>
-                <p className="sponsor-emphasis">{ad.emphasis}</p>
+            <div className="space-y-3">
+              <div className="space-y-2">
+                <h2 className="text-xl font-black text-slate-900 sm:text-2xl">{ad.headline}</h2>
+                <p className="max-w-2xl text-sm leading-6 text-slate-700">{ad.body}</p>
               </div>
-
-              <div className="sponsor-image-frame">
-                <Image
-                  src={ad.imageSrc}
-                  alt={ad.imageAlt}
-                  width={440}
-                  height={330}
-                  className="sponsor-image"
-                />
-              </div>
+              <p className="sponsor-emphasis">{ad.emphasis}</p>
             </div>
           </div>
 

@@ -230,11 +230,11 @@ button {
 }
 
 .sponsor-wordmark-title {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: -0.02em;
   color: #0f172a;
-  line-height: 1;
+  line-height: 1.15;
 }
 
 .sponsor-wordmark-subtitle {
@@ -253,23 +253,6 @@ button {
   font-weight: 800;
   line-height: 1.5;
   color: #7c2d12;
-}
-
-.sponsor-image-frame {
-  overflow: hidden;
-  border: 2px solid #000;
-  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
-  padding: 6px;
-  box-shadow: inset -2px -2px 0 #94a3b8, inset 2px 2px 0 white;
-}
-
-.sponsor-image {
-  display: block;
-  aspect-ratio: 4 / 3;
-  width: 100%;
-  object-fit: cover;
-  border: 2px solid #000;
-  background: #fff;
 }
 
 .sponsor-card-cta {
