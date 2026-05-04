@@ -49,12 +49,12 @@ npm run preview
 
 브라우저에서 `http://localhost:3000`으로 접속하면 export 결과물을 확인할 수 있습니다.
 
-## 구글 애널리틱스 연동
+## 구글 태그 매니저 연동
 
-GA4 측정 ID를 `.env.local` 또는 배포 환경변수에 설정하면 자동으로 스크립트가 삽입됩니다.
+Google Tag Manager ID를 `.env.local` 또는 배포 환경변수에 설정하면 자동으로 스크립트와 `noscript` iframe이 삽입됩니다.
 
 ```bash
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_GTM_ID=GTM-WSKBCHS9
 ```
 
 정적 export 기준이라 빌드 시점에 환경변수가 반영되어야 합니다.
